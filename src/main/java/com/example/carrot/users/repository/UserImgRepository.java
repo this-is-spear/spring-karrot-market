@@ -1,6 +1,4 @@
-package com.example.carrot.user.repository;
-
-import com.example.carrot.user.domain.UserImg;
+package com.example.carrot.users.repository;
 
 import java.util.UUID;
 

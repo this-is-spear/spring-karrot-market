@@ -1,4 +1,4 @@
-package com.example.carrot.user.domain;
+package com.example.carrot.users.domain;
 
 import lombok.*;
 

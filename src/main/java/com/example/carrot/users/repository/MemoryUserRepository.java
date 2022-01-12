@@ -1,9 +1,8 @@
-package com.example.carrot.user.repository;
+package com.example.carrot.users.repository;
 
-import com.example.carrot.user.domain.User;
+import com.example.carrot.users.domain.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;

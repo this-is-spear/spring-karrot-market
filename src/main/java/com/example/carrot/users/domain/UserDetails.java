@@ -1,11 +1,10 @@
-package com.example.carrot.user.domain;
+package com.example.carrot.users.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.persistence.OneToOne;
 import java.util.UUID;
 
 /**
@@ -18,7 +17,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @ToString
-public class UserImg {
+public class UserDetails {
     private UUID user_id;
-    private String img_path;
+    private String phone_number;
+    private String name;
 }

@@ -1,6 +1,6 @@
-package com.example.carrot.user.repository;
+package com.example.carrot.users.repository;
 
-import com.example.carrot.user.domain.User;
+import com.example.carrot.users.domain.User;
 
 import java.util.UUID;
 

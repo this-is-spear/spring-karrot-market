@@ -1,4 +1,4 @@
-package com.example.carrot.user.domain;
+package com.example.carrot.users.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,8 +17,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @ToString
-public class UserDetails {
+public class UserImg {
     private UUID user_id;
-    private String phone_number;
-    private String name;
+    private String img_path;
 }

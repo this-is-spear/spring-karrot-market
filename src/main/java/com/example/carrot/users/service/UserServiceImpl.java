@@ -1,10 +1,10 @@
-package com.example.carrot.user.service;
+package com.example.carrot.users.service;
 
-import com.example.carrot.user.domain.User;
-import com.example.carrot.user.domain.UserDetails;
-import com.example.carrot.user.repository.UserDetailsRepository;
-import com.example.carrot.user.repository.UserImgRepository;
-import com.example.carrot.user.repository.UserRepository;
+import com.example.carrot.users.domain.User;
+import com.example.carrot.users.domain.UserDetails;
+import com.example.carrot.users.repository.UserDetailsRepository;
+import com.example.carrot.users.repository.UserImgRepository;
+import com.example.carrot.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
