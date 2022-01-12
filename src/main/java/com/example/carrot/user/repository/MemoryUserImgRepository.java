@@ -17,16 +17,16 @@ public class MemoryUserImgRepository implements UserImgRepository{
     Map<UUID, UserImg> userImgMap = new ConcurrentHashMap<>();
 
     @Override
-    public UUID init(UUID uuid) {
+    public void init(UUID uuid) {
         UserImg userImg = UserImg.builder().user_id(uuid).build();
         userImgMap.put(uuid, userImg);
-        return uuid;
     }
 
     @Override
-    public UUID save(UserImg userImg) {
-        userImgMap.put(userImg.getUser_id(), userImg);
-        return userImg.getUser_id();
+    public void save(UUID uuid, String userImgPath) {
+        UserImg userImg = userImgMap.get(uuid);
+        UserImg updateUserImg = UserImg.builder().user_id(userImg.getUser_id()).img_path(userImgPath).build();
+        userImgMap.put(uuid, updateUserImg);
     }
 
     @Override

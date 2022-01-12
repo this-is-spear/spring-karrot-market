@@ -2,15 +2,13 @@ package com.example.carrot.user.service;
 
 import com.example.carrot.user.domain.User;
 import com.example.carrot.user.domain.UserDetails;
-import com.example.carrot.user.domain.UserImg;
 import com.example.carrot.user.repository.UserDetailsRepository;
 import com.example.carrot.user.repository.UserImgRepository;
 import com.example.carrot.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.implementation.bytecode.Throw;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -44,23 +42,23 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UUID updateUserImg(UserImg userImg) {
-        UUID uuid = userImgRepository.save(userImg);
-        return uuid;
+    public void updateUserImg(UUID uuid, String userImg) {
+        userImgRepository.save(uuid, userImg);
     }
 
     @Override
-    public UUID updateUserNickname(UUID uuid, String updateNickname) {
-        return userRepository.updateUserNickname(uuid, updateNickname);
+    public void updateUserNickname(UUID uuid, String updateNickname) {
+        userRepository.updateUserNickname(uuid, updateNickname);
     }
 
     @Override
     public String getImgPath(UUID uuid) {
         String imagePath = userImgRepository.getImagePath(uuid);
-        if (!imagePath.isEmpty()) {
-            return imagePath;
-        }else{
-            return null;
-        }
+        return Objects.requireNonNullElse(imagePath, "static/images/default-profile.jpg");
+    }
+
+    @Override
+    public UserDetails getUserDetails(UUID uuid) {
+        return userDetailsRepository.getUserDetails(uuid);
     }
 }

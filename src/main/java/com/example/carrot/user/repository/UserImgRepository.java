@@ -10,7 +10,7 @@ import java.util.UUID;
  * Github : https://github.com/Imaspear
  */
 public interface UserImgRepository {
-    UUID init(UUID uuid);
-    UUID save(UserImg userImg);
+    void init(UUID uuid);
+    void save(UUID uuid, String userImgPath);
     String getImagePath(UUID uuid);
 }

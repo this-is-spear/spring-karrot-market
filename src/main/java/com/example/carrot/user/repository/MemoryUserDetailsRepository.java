@@ -17,7 +17,8 @@ public class MemoryUserDetailsRepository implements UserDetailsRepository{
 
     @Override
     public UUID init(UUID uuid, UserDetails userDetails) {
-        userDetailsMap.put(uuid, userDetails);
+        UserDetails build = UserDetails.builder().user_id(uuid).phone_number(userDetails.getPhone_number()).name(userDetails.getName()).build();
+        userDetailsMap.put(uuid, build);
         return uuid;
     }
 

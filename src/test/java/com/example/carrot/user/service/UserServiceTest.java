@@ -35,7 +35,6 @@ class UserServiceTest {
         userImgRepository = applicationContext.getBean("userImgRepository", UserImgRepository.class);
     }
 
-
     @Test
     @DisplayName("회원가입 테스트")
     public void joinTest() throws Exception{
@@ -50,7 +49,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("닉네임 업데이트")
+    @DisplayName("닉네임 업데이트 테스트")
     public void updateNickname() throws Exception{
         //given
         User user = User.builder().nickname("spear").password("password").build();
@@ -65,25 +64,47 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("닉네임 업데이트 테스트")
-    public void updateImagePathTest() throws Exception{
-
+    @DisplayName("기본 설정 이미지일 때 보여주는 화면")
+    public void loadingUserNonImage() throws Exception{
         //given
-
+        User user = User.builder().nickname("spear").password("password").build();
+        UserDetails userDetails = UserDetails.builder().name("keon").phone_number("010-0000-0000").build();
         //when
-
+        UUID uuid = userService.saveUser(user, userDetails);
+        String imgPath = userService.getImgPath(uuid);
+        System.out.println("imgPath = " + imgPath);
         //then
+        Assertions.assertThat(imgPath).isEqualTo("static/images/default-profile.jpg");
+    }
 
+    @Test
+    @DisplayName("이미지 업데이트 테스트")
+    public void updateImagePathTest() throws Exception{
+        //given
+        User user = User.builder().nickname("spear").password("password").build();
+        UserDetails userDetails = UserDetails.builder().name("keon").phone_number("010-0000-0000").build();
+        //when
+        UUID uuid = userService.saveUser(user, userDetails);
+        //then
+        String updateImgPath = "/path/new-profile.jpg";
+        userService.updateUserImg(uuid, updateImgPath);
     }
 
     @Test
     @DisplayName("간단한 유저 정보 조회 테스트")
     public void getUserTest() throws Exception{
         //given
-
+        User user = User.builder().nickname("spear").password("password").build();
+        UserDetails userDetails = UserDetails.builder().name("keon").phone_number("010-0000-0000").build();
         //when
-
+        UUID uuid = userService.saveUser(user, userDetails);
         //then
+        User getUser = userService.getUser(uuid);
+        String imgPath = userService.getImgPath(uuid);
+        UserDetails details = userService.getUserDetails(uuid);
+        System.out.println("getUser = " + getUser.toString());
+        System.out.println("imgPath = " + imgPath);
+        System.out.println("details = " + details.toString());
     }
 
     @Configuration

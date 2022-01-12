@@ -2,7 +2,6 @@ package com.example.carrot.user.service;
 
 import com.example.carrot.user.domain.User;
 import com.example.carrot.user.domain.UserDetails;
-import com.example.carrot.user.domain.UserImg;
 
 import java.util.UUID;
 
@@ -14,7 +13,9 @@ import java.util.UUID;
 public interface UserService {
     UUID saveUser(User user, UserDetails userDetails);
     User getUser(UUID userId);
-    UUID updateUserImg(UserImg userImg);
-    UUID updateUserNickname(UUID uuid, String updateNickname);
+    void updateUserImg(UUID uuid, String userImg);
+    void updateUserNickname(UUID uuid, String updateNickname);
     String getImgPath(UUID uuid);
+
+    UserDetails getUserDetails(UUID uuid);
 }
