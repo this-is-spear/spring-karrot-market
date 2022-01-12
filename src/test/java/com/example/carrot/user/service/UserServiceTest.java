@@ -1,0 +1,113 @@
+package com.example.carrot.user.service;
+
+import com.example.carrot.user.domain.User;
+import com.example.carrot.user.domain.UserDetails;
+import com.example.carrot.user.repository.*;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.UUID;
+
+/**
+ * Created by Imaspear on 2022-01-12
+ * Blog : https://imspear.tistory.com/
+ * Github : https://github.com/Imaspear
+ */
+class UserServiceTest {
+    UserService userService;
+    UserRepository userRepository;
+    UserDetailsRepository userDetailsRepository;
+    UserImgRepository userImgRepository;
+
+    @BeforeEach
+    void setUp() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(UserConfig.class);
+        userService = applicationContext.getBean("userService", UserService.class);
+        userRepository = applicationContext.getBean("userRepository", UserRepository.class);
+        userDetailsRepository = applicationContext.getBean("userDetailsRepository",UserDetailsRepository.class);
+        userImgRepository = applicationContext.getBean("userImgRepository", UserImgRepository.class);
+    }
+
+
+    @Test
+    @DisplayName("회원가입 테스트")
+    public void joinTest() throws Exception{
+        //given
+        User user = User.builder().nickname("spear").password("password").build();
+        UserDetails userDetails = UserDetails.builder().name("keon").phone_number("010-0000-0000").build();
+        //when
+        UUID uuid = userService.saveUser(user, userDetails);
+        //then
+        String nickname = userRepository.getUser(uuid).getNickname();
+        Assertions.assertThat(nickname).isEqualTo(user.getNickname());
+    }
+
+    @Test
+    @DisplayName("닉네임 업데이트")
+    public void updateNickname() throws Exception{
+        //given
+        User user = User.builder().nickname("spear").password("password").build();
+        UserDetails userDetails = UserDetails.builder().name("keon").phone_number("010-0000-0000").build();
+        //when
+        UUID uuid = userService.saveUser(user, userDetails);
+
+        //then
+        String nickname = "updateNickname";
+        userService.updateUserNickname(uuid, nickname);
+        Assertions.assertThat(userRepository.getUser(uuid).getNickname()).isNotEqualTo(user.getNickname());
+    }
+
+    @Test
+    @DisplayName("닉네임 업데이트 테스트")
+    public void updateImagePathTest() throws Exception{
+
+        //given
+
+        //when
+
+        //then
+
+    }
+
+    @Test
+    @DisplayName("간단한 유저 정보 조회 테스트")
+    public void getUserTest() throws Exception{
+        //given
+
+        //when
+
+        //then
+    }
+
+    @Configuration
+    static class UserConfig{
+
+        @Bean
+        UserRepository userRepository(){
+            return new MemoryUserRepository();
+        }
+
+        @Bean
+        UserDetailsRepository userDetailsRepository(){
+            return new MemoryUserDetailsRepository();
+        }
+
+        @Bean
+        UserImgRepository userImgRepository(){
+            return new MemoryUserImgRepository();
+        }
+
+        @Bean
+        UserService userService(){
+            return new UserServiceImpl(userRepository(), userDetailsRepository(), userImgRepository());
+        }
+
+    }
+}
