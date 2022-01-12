@@ -3,6 +3,7 @@ package com.example.carrot.user.repository;
 import com.example.carrot.user.domain.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,18 +17,30 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MemoryUserRepository implements UserRepository{
 
-    Map<UUID, User> userMap = new ConcurrentHashMap<UUID, User>();
+    Map<UUID, User> userMap = new ConcurrentHashMap<>();
 
     @Override
     public UUID saveUser(User user) {
-        UUID uuid = UUID.randomUUID();
-        User saveUser = new User(uuid, user.getNickname(), user.getPassword());
+        UUID uuid = getUUID();
+        User saveUser = User.builder().id(uuid).nickname(user.getNickname()).password(user.getPassword()).build();
         userMap.put(uuid, saveUser);
         return uuid;
+    }
+
+    private UUID getUUID() {
+        return UUID.randomUUID();
     }
 
     @Override
     public User getUser(UUID userId) {
         return userMap.get(userId);
+    }
+
+    @Override
+    public UUID updateUserNickname(UUID uuid, String updateNickname) {
+        User user = userMap.get(uuid);
+        User updateUser = User.builder().id(user.getId()).password(user.getPassword()).nickname(updateNickname).build();
+        userMap.put(uuid, updateUser);
+        return updateUser.getId();
     }
 }

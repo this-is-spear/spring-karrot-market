@@ -1,7 +1,13 @@
 package com.example.carrot.user.service;
 
 import com.example.carrot.user.domain.User;
+import com.example.carrot.user.domain.UserDetails;
+import com.example.carrot.user.domain.UserImg;
+import com.example.carrot.user.repository.UserDetailsRepository;
+import com.example.carrot.user.repository.UserImgRepository;
 import com.example.carrot.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +20,22 @@ import java.util.UUID;
  */
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserDetailsRepository userDetailsRepository;
+    private final UserImgRepository userImgRepository;
 
     @Override
-    public UUID saveUser(User user) {
-        return userRepository.saveUser(user);
+    public UUID saveUser(User user, UserDetails userDetails){
+        // User 저장 return User id
+        UUID uuid = userRepository.saveUser(user);
+        // User Details 저장
+        userDetailsRepository.init(uuid, userDetails);
+        // User Img 저장
+        userImgRepository.init(uuid);
+        return uuid;
     }
 
     @Override
@@ -34,12 +44,23 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUserImg(User user) {
-        return null;
+    public UUID updateUserImg(UserImg userImg) {
+        UUID uuid = userImgRepository.save(userImg);
+        return uuid;
     }
 
     @Override
-    public User updateUserNickname(User user) {
-        return null;
+    public UUID updateUserNickname(UUID uuid, String updateNickname) {
+        return userRepository.updateUserNickname(uuid, updateNickname);
+    }
+
+    @Override
+    public String getImgPath(UUID uuid) {
+        String imagePath = userImgRepository.getImagePath(uuid);
+        if (!imagePath.isEmpty()) {
+            return imagePath;
+        }else{
+            return null;
+        }
     }
 }

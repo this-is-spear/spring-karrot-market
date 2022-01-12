@@ -3,8 +3,8 @@ package com.example.carrot.user.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
+import javax.persistence.OneToOne;
 import java.util.UUID;
 
 /**
@@ -16,8 +16,7 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
-public class User {
-    private UUID id;
-    private String nickname;
-    private String password;
+public class UserImg {
+    private UUID user_id;
+    private String img_path;
 }

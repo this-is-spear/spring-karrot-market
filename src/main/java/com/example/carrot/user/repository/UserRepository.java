@@ -12,4 +12,6 @@ import java.util.UUID;
 public interface UserRepository {
     UUID saveUser(User user);
     User getUser(UUID userId);
+
+    UUID updateUserNickname(UUID uuid, String updateNickname);
 }

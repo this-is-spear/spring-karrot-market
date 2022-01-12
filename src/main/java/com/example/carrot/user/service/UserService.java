@@ -1,6 +1,8 @@
 package com.example.carrot.user.service;
 
 import com.example.carrot.user.domain.User;
+import com.example.carrot.user.domain.UserDetails;
+import com.example.carrot.user.domain.UserImg;
 
 import java.util.UUID;
 
@@ -10,8 +12,9 @@ import java.util.UUID;
  * Github : https://github.com/Imaspear
  */
 public interface UserService {
-    UUID saveUser(User user);
+    UUID saveUser(User user, UserDetails userDetails);
     User getUser(UUID userId);
-    User updateUserImg(User user);
-    User updateUserNickname(User user);
+    UUID updateUserImg(UserImg userImg);
+    UUID updateUserNickname(UUID uuid, String updateNickname);
+    String getImgPath(UUID uuid);
 }
