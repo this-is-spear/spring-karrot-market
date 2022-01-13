@@ -1,5 +1,8 @@
 package com.example.carrot.place.repository;
 
+import com.example.carrot.place.domain.TradingPlace;
+
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -7,8 +10,8 @@ import java.util.UUID;
  * Blog : https://imspear.tistory.com/
  * Github : https://github.com/Imaspear
  */
-public interface TradingPlace {
+public interface TradingPlaceRepository {
     UUID save(TradingPlace tradingPlace);
-    TradingPlace findByPlace_code(UUID place_code);
+    List<TradingPlace> findByPlace_code(UUID place_code);
     TradingPlace findByItem_id(UUID item_id);
 }
