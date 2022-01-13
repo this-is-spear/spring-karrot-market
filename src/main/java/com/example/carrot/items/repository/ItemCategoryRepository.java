@@ -3,6 +3,7 @@ package com.example.carrot.items.repository;
 import com.example.carrot.items.domain.Category;
 import com.example.carrot.items.domain.ItemCategory;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,6 +14,6 @@ import java.util.UUID;
  */
 public interface ItemCategoryRepository {
     UUID saveItemCategory(ItemCategory itemCategory);
-    ItemCategory getOneItemCategory(UUID item_uuid);
-//    Map<UUID, ItemCategory> getItemByCategory(UUID item_id, Category category);
+    Category getOneItemCategory(UUID item_uuid);
+    List<UUID> getItemListByCategory(Category category);
 }
