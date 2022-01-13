@@ -1,5 +1,9 @@
 package com.example.carrot.items.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
 import java.util.UUID;
 
 /**
@@ -7,6 +11,10 @@ import java.util.UUID;
  * Blog : https://imspear.tistory.com/
  * Github : https://github.com/Imaspear
  */
+
+@Getter
+@Builder
+@AllArgsConstructor
 public class ItemDetails {
     private UUID item_id;
     private String content;

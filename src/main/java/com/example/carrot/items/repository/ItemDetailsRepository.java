@@ -10,6 +10,6 @@ import java.util.UUID;
  * Github : https://github.com/Imaspear
  */
 public interface ItemDetailsRepository {
-    UUID saveItemDetails(UUID item_uuid);
-    ItemDetails getItemDetails(UUID item_uuid);
+    UUID saveItemDetails(ItemDetails itemDetails);
+    String getContents(UUID item_uuid);
 }
