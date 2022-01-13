@@ -1,6 +1,7 @@
 package com.example.carrot.items.repository;
 
 import com.example.carrot.items.domain.Item;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Blog : https://imspear.tistory.com/
  * Github : https://github.com/Imaspear
  */
+@Repository
 public class ItemRepositoryImpl implements ItemRepository {
     Map<UUID, Item> itemMap = new ConcurrentHashMap<>();
 
