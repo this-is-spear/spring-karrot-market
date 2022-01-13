@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Github : https://github.com/Imaspear
  */
 @Repository
-public class ItemRepositoryImpl implements ItemRepository {
+public class MemoryItemRepository implements ItemRepository {
     Map<UUID, Item> itemMap = new ConcurrentHashMap<>();
 
     @Override

@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 @Repository
-public class ItemCategoryRepositoryImpl implements ItemCategoryRepository {
+public class MemoryItemCategoryRepository implements ItemCategoryRepository {
 
     Map<UUID, ItemCategory> itemCategoryMap = new ConcurrentHashMap<>();
 
