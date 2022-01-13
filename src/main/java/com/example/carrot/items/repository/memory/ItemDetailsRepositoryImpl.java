@@ -1,6 +1,7 @@
-package com.example.carrot.items.repository;
+package com.example.carrot.items.repository.memory;
 
 import com.example.carrot.items.domain.ItemDetails;
+import com.example.carrot.items.repository.ItemDetailsRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Github : https://github.com/Imaspear
  */
 @Repository
-public class ItemDetailsRepositoryImpl implements ItemDetailsRepository{
+public class ItemDetailsRepositoryImpl implements ItemDetailsRepository {
 
     Map<UUID, ItemDetails> itemDetailsMap = new ConcurrentHashMap<>();
 

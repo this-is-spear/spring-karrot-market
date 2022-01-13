@@ -1,7 +1,8 @@
-package com.example.carrot.items.repository;
+package com.example.carrot.items.repository.memory;
 
 import com.example.carrot.items.domain.Category;
 import com.example.carrot.items.domain.ItemCategory;
+import com.example.carrot.items.repository.ItemCategoryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 @Repository
-public class ItemCategoryRepositoryImpl implements ItemCategoryRepository{
+public class ItemCategoryRepositoryImpl implements ItemCategoryRepository {
 
     Map<UUID, ItemCategory> itemCategoryMap = new ConcurrentHashMap<>();
 

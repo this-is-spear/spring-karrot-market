@@ -1,6 +1,7 @@
-package com.example.carrot.users.repository;
+package com.example.carrot.users.repository.memory;
 
 import com.example.carrot.users.domain.User;
+import com.example.carrot.users.repository.UserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 @Repository
-public class MemoryUserRepository implements UserRepository{
+public class MemoryUserRepository implements UserRepository {
 
     Map<UUID, User> userMap = new ConcurrentHashMap<>();
 

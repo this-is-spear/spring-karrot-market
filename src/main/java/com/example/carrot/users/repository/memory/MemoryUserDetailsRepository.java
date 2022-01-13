@@ -1,6 +1,7 @@
-package com.example.carrot.users.repository;
+package com.example.carrot.users.repository.memory;
 
 import com.example.carrot.users.domain.UserDetails;
+import com.example.carrot.users.repository.UserDetailsRepository;
 
 import java.util.Map;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Blog : https://imspear.tistory.com/
  * Github : https://github.com/Imaspear
  */
-public class MemoryUserDetailsRepository implements UserDetailsRepository{
+public class MemoryUserDetailsRepository implements UserDetailsRepository {
 
     Map<UUID, UserDetails> userDetailsMap = new ConcurrentHashMap<>();
 
