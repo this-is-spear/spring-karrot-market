@@ -1,5 +1,7 @@
 package com.example.carrot.place.service;
 
+import com.example.carrot.place.domain.Place;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -10,18 +12,25 @@ import java.util.UUID;
  */
 public interface PlaceService {
     /**
+     * 위치가 존재하지 않는다면 새로운 장소 등록
+     * @param place
+     * @return place_code
+     */
+    UUID savePlace(Place place);
+
+    /**
      * 아이템 위치 등록
      * @param item_id
      * @return place_code
      */
-    UUID saveTradingPlace(UUID item_id);
+    UUID saveTradingPlace(UUID item_id, UUID user_id);
 
     /**
      * 판매자 위치 등록
      * @param user_id
      * @return place_code
      */
-    UUID saveUserPlace(UUID user_id);
+    UUID saveUserPlace(UUID user_id, Place place);
 
     /**
      * 동일 위치 아이템 리스트 조회
