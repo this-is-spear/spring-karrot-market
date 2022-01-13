@@ -2,6 +2,7 @@ package com.example.carrot.place.repository;
 
 import com.example.carrot.place.domain.Place;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,4 +13,5 @@ import java.util.UUID;
 public interface PlaceRepository {
     UUID save(Place place);
     Place findByPlace_code(UUID place_code);
+    Place findByPlace_name(String place_name);
 }
