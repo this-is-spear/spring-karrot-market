@@ -1,6 +1,7 @@
 package com.example.carrot.place.service;
 
 import com.example.carrot.place.domain.Place;
+import com.example.carrot.place.domain.TradingPlace;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,7 @@ public interface PlaceService {
      * @param item_id
      * @return place_code
      */
-    UUID saveTradingPlace(UUID item_id, UUID user_id);
+    UUID saveTradingPlace(TradingPlace tradingPlace);
 
     /**
      * 판매자 위치 등록

@@ -1,6 +1,7 @@
 package com.example.carrot.place.service;
 
 import com.example.carrot.place.domain.Place;
+import com.example.carrot.place.domain.TradingPlace;
 import com.example.carrot.place.domain.UserPlace;
 import com.example.carrot.place.repository.PlaceRepository;
 import com.example.carrot.place.repository.TradingPlaceRepository;
@@ -33,9 +34,8 @@ public class PlaceServiceImpl implements PlaceService{
     }
 
     @Override
-    public UUID saveTradingPlace(UUID item_id,UUID user_id) {
-
-        return null;
+    public UUID saveTradingPlace(TradingPlace tradingPlace) {
+        return tradingPlaceRepository.save(tradingPlace);
     }
 
     @Override
@@ -54,6 +54,11 @@ public class PlaceServiceImpl implements PlaceService{
         return null;
     }
 
+    /**
+     * 미완성
+     * @param place_code
+     * @return
+     */
     @Override
     public List<UUID> findByPlace_code(UUID place_code) {
         return null;
@@ -61,11 +66,13 @@ public class PlaceServiceImpl implements PlaceService{
 
     @Override
     public UUID confirmUserPlace(UUID user_id) {
-        return null;
+        UserPlace userPlace = userPlaceRepository.findByUser_id(user_id);
+        return userPlace.getPlace_code();
     }
 
     @Override
     public UUID confirmItemPlace(UUID item_id) {
-        return null;
+        TradingPlace tradingPlace = tradingPlaceRepository.findByItem_id(item_id);
+        return tradingPlace.getPlace_code();
     }
 }
