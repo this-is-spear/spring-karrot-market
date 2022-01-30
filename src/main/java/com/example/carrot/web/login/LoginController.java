@@ -8,7 +8,7 @@ public interface LoginController {
     public String loginForm(LoginForm loginForm);
 
     public String login(LoginForm loginForm, BindingResult bindingResult,
-                        HttpServletRequest request);
+                        String redirectURL, HttpServletRequest request);
 
     public String logout(HttpServletRequest request);
 }
