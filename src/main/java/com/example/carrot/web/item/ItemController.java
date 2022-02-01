@@ -37,19 +37,27 @@ public class ItemController {
 
     @PostMapping("/items/new")
     public String saveItem(@ModelAttribute ItemForm form, RedirectAttributes redirectAttributes) throws IOException {
-        UploadFile attachFile = fileStore.storeFile(form.getAttachFile());
-        List<UploadFile> storeFiles = fileStore.storeFiles(form.getImageFiles());
+        log.debug("[{}][{}] item form", MDC.get(CheckThreadLog.LOG_ID), form.toString());
 
-        Item item = new Item();
-        item.setItemName(form.getItemName());
-        item.setAttachFile(attachFile);
-        item.setImagesFiles(storeFiles);
-        itemRepository.save(item);
+        Item item = saveItem(form);
 
         redirectAttributes.addAttribute("itemId", item.getId());
 
         return "redirect:/items/{itemId}";
     }
+
+    private Item saveItem(ItemForm form) throws IOException {
+        List<UploadFile> storeFiles = fileStore.storeFiles(form.getImageFiles());
+        Item item = new Item();
+        item.setItemName(form.getItemName());
+        item.setItemContent(form.getItemContent());
+        item.setItemCategory(form.getItemCategory());
+        item.setItemPrice(form.getItemPrice());
+        item.setImagesFiles(storeFiles);
+        itemRepository.save(item);
+        return item;
+    }
+
 
     @GetMapping("/items/{id}")
     public String items(@PathVariable Long id, Model model) {
@@ -62,20 +70,6 @@ public class ItemController {
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
         return new UrlResource("file:" + fileStore.getFullPath(filename));
-    }
-
-    @GetMapping("/attach/{itemId}")
-    public ResponseEntity<Resource> downloadAttach(@PathVariable Long itemId) throws MalformedURLException{
-        Item item = itemRepository.findById(itemId);
-        String storeFileName = item.getAttachFile().getStoreFileName();
-        String uploadFileName = item.getAttachFile().getUploadFileName();
-
-        UrlResource resource = new UrlResource("file:" + fileStore.getFullPath(storeFileName));
-
-        log.debug("[{}][{}] uploadFileName", MDC.get(CheckThreadLog.LOG_ID), uploadFileName);
-        String encode = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
-        String contentDisposition = "attachment; filename=\"" + encode + "\"";
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition).body(resource);
     }
 
 }

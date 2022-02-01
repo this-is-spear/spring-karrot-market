@@ -1,5 +1,6 @@
 package com.example.carrot.domain.item;
 
+import com.example.carrot.domain.item.category.Category;
 import lombok.Data;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public class Item {
     private Long id;
     private String itemName;
-    private UploadFile attachFile;
+    private String itemContent;
+    private int itemPrice;
+    private Category itemCategory;
     private List<UploadFile> imagesFiles;
 }
