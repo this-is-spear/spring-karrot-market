@@ -6,15 +6,14 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Slf4j
-@Repository
-public class UserRepositoryImpl implements UserRepository{
+public class MemoryUserRepository implements UserRepository{
         private static Map<Long, User> store = new HashMap<>(); //static 사용
         private static long sequence = 0L; //static 사용
-        public User save(User user) {
+        public Long save(User user) {
             user.setId(++sequence);
             log.debug("save: user={}", user);
             store.put(user.getId(), user);
-            return user;
+            return user.getId();
         }
         public User findById(Long id) {
             log.debug("UserRepositoryImpl:findById: id={}", id);

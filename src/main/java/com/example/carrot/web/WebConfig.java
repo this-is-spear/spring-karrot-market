@@ -1,7 +1,11 @@
 package com.example.carrot.web;
 
+import com.example.carrot.domain.user.MemoryUserRepository;
+import com.example.carrot.domain.user.UserRepository;
 import com.example.carrot.web.filter.LogCheckFilter;
 import com.example.carrot.web.interceptor.LoginInterceptor;
+import com.example.carrot.web.user.UserController;
+import com.example.carrot.web.user.UserControllerImpl;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,4 +35,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/css/**", "/*.ico", "/error","/images/**",
                         "/", "/users/add", "/login", "/logout");
     }
+
 }

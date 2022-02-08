@@ -1,6 +1,7 @@
-package com.example.carrot.file;
+package com.example.carrot.web.item;
 
-import com.example.carrot.domain.item.UploadFile;
+import com.example.carrot.domain.images.Image;
+import com.example.carrot.domain.images.ItemImage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class FileStore {
+public class ItemFileStore {
     @Value("${file.dir}")
     private String fileDir;
 
@@ -20,9 +21,9 @@ public class FileStore {
         return fileDir + filename;
     }
 
-    public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles)
+    public List<ItemImage> storeFiles(List<MultipartFile> multipartFiles)
             throws IOException {
-        List<UploadFile> storeFileResult = new ArrayList<>();
+        List<ItemImage> storeFileResult = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
             if (!multipartFile.isEmpty()) {
                 storeFileResult.add(storeFile(multipartFile));
@@ -30,7 +31,7 @@ public class FileStore {
         return storeFileResult;
     }
 
-    public UploadFile storeFile(MultipartFile multipartFile) throws IOException {
+    public ItemImage storeFile(MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {
             return null;
         }
@@ -38,7 +39,8 @@ public class FileStore {
         String originalFilename = multipartFile.getOriginalFilename();
         String storeFileName = createStoreFileName(originalFilename);
         multipartFile.transferTo(new File(getFullPath(storeFileName)));
-        return new UploadFile(originalFilename, storeFileName);
+        
+        return new ItemImage(originalFilename, storeFileName);
     }
 
     public String createStoreFileName(String originalFilename) {
