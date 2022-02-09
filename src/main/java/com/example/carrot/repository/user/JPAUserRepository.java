@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
-@Transactional
 public class JPAUserRepository implements UserRepository {
 
     @PersistenceContext
@@ -33,11 +32,8 @@ public class JPAUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByLoginId(String loginId) {
-        TypedQuery<User> query = em.createQuery("select u from User as u where u.loginId = :loginId", User.class);
-        query.setParameter("loginId", loginId);
-        User user = query.getSingleResult();
-        return Optional.ofNullable(query.getSingleResult());
+    public List<User> findByLoginId(String loginId) {
+         return em.createQuery("select u from User as u where u.loginId = :loginId", User.class).setParameter("loginId", loginId).getResultList();
     }
 
     @Override

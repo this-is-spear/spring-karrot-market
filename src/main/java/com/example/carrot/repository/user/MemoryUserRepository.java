@@ -4,6 +4,7 @@ import com.example.carrot.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class MemoryUserRepository implements UserRepository {
@@ -19,11 +20,11 @@ public class MemoryUserRepository implements UserRepository {
             log.debug("UserRepositoryImpl:findById: id={}", id);
             return store.get(id);
         }
-        public Optional<User> findByLoginId(String loginId) {
+        public List<User> findByLoginId(String loginId) {
             log.debug("UserRepositoryImpl:findByLoginId: loginId={}", loginId);
             return findAll().stream()
                     .filter(m -> m.getLoginId().equals(loginId))
-                    .findFirst();
+                    .collect(Collectors.toList());
         }
         public List<User> findAll() {
             log.debug("UserRepositoryImpl:findAll");

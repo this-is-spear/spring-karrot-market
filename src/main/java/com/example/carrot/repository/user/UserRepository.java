@@ -10,7 +10,7 @@ public interface UserRepository {
 
     public User findById(Long id);
 
-    public Optional<User> findByLoginId(String loginId);
+    public List<User> findByLoginId(String loginId);
 
     public List<User> findAll();
 }
