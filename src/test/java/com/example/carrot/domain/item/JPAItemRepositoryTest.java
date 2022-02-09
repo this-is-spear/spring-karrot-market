@@ -2,7 +2,7 @@ package com.example.carrot.domain.item;
 
 import com.example.carrot.domain.item.category.Category;
 import com.example.carrot.domain.images.ItemImage;
-import com.example.carrot.domain.images.ItemImageRepository;
+import com.example.carrot.domain.images.JPAItemImageRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ class JPAItemRepositoryTest {
     JPAItemRepository jpaItemRepository;
 
     @Autowired
-    ItemImageRepository uploadImageRepository;
+    JPAItemImageRepository uploadImageRepository;
 
     @Test
     @Transactional
@@ -38,7 +38,7 @@ class JPAItemRepositoryTest {
         item.setItemContent("첫 번째 아이템");
         item.setItemName("hoho");
         item.setItemCategory(Category.BEAUTY);
-        item.setUploadImages(uploadFile);
+        item.setUploadImage(uploadFile);
         jpaItemRepository.save(item);
     }
 
@@ -66,9 +66,9 @@ class JPAItemRepositoryTest {
         item.setItemContent("첫 번째 아이템");
         item.setItemName("hoho");
         item.setItemCategory(Category.BEAUTY);
-        item.setUploadImages(uploadFile1);
-        item.setUploadImages(uploadFile2);
-        item.setUploadImages(uploadFile3);
+        item.setUploadImage(uploadFile1);
+        item.setUploadImage(uploadFile2);
+        item.setUploadImage(uploadFile3);
         jpaItemRepository.save(item);
 
         jpaItemRepository.delete(item);

@@ -29,9 +29,15 @@ public class Item {
     @OneToMany(mappedBy = "item",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemImage> imagesFiles = new ArrayList<>();
 
-    public void setUploadImages(ItemImage uploadImage) {
+    public void setUploadImage(ItemImage uploadImage) {
         uploadImage.setItem(this);
         this.getImagesFiles().add(uploadImage);
+    }
+
+    public void setImagesFiles(List<ItemImage> imagesFiles) {
+        for (ItemImage imagesFile : imagesFiles) {
+            this.setUploadImage(imagesFile);
+        }
     }
 
     @Override

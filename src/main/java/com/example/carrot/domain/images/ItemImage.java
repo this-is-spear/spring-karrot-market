@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @RequiredArgsConstructor
 @Entity
-@DiscriminatorValue("upload_images")
+@DiscriminatorValue("item_images")
 public class ItemImage extends Image{
 
     @ManyToOne(fetch = FetchType.LAZY)
