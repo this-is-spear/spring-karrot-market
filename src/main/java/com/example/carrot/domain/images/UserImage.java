@@ -1,5 +1,6 @@
 package com.example.carrot.domain.images;
 
+import com.example.carrot.domain.images.Image;
 import com.example.carrot.domain.user.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @Entity
 @DiscriminatorValue("user_images")
-public class UserImage extends Image{
+public class UserImage extends Image {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

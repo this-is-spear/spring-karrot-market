@@ -1,5 +1,6 @@
-package com.example.carrot.domain.user;
+package com.example.carrot.repository.user;
 
+import com.example.carrot.domain.user.User;
 import com.example.carrot.web.filter.CheckThreadLog;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -15,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 @Repository
 @Transactional
-public class JPAUserRepository implements UserRepository{
+public class JPAUserRepository implements UserRepository {
 
     @PersistenceContext
     private EntityManager em;

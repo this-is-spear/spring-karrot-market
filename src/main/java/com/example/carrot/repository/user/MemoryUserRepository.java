@@ -1,12 +1,12 @@
-package com.example.carrot.domain.user;
+package com.example.carrot.repository.user;
 
+import com.example.carrot.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Slf4j
-public class MemoryUserRepository implements UserRepository{
+public class MemoryUserRepository implements UserRepository {
         private static Map<Long, User> store = new HashMap<>(); //static 사용
         private static long sequence = 0L; //static 사용
         public Long save(User user) {

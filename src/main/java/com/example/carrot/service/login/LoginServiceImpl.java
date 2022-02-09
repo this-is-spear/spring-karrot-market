@@ -1,7 +1,7 @@
-package com.example.carrot.domain.login;
+package com.example.carrot.service.login;
 
 import com.example.carrot.domain.user.User;
-import com.example.carrot.domain.user.UserRepository;
+import com.example.carrot.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

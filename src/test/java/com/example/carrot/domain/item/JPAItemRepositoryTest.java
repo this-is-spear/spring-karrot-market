@@ -2,7 +2,8 @@ package com.example.carrot.domain.item;
 
 import com.example.carrot.domain.item.category.Category;
 import com.example.carrot.domain.images.ItemImage;
-import com.example.carrot.domain.images.JPAItemImageRepository;
+import com.example.carrot.repository.image.item.JPAItemImageRepository;
+import com.example.carrot.repository.item.JPAItemRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

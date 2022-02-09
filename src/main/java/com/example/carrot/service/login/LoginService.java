@@ -1,4 +1,4 @@
-package com.example.carrot.domain.login;
+package com.example.carrot.service.login;
 
 import com.example.carrot.domain.user.User;
 

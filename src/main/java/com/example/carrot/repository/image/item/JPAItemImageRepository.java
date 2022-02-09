@@ -1,5 +1,6 @@
-package com.example.carrot.domain.images;
+package com.example.carrot.repository.image.item;
 
+import com.example.carrot.domain.images.ItemImage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

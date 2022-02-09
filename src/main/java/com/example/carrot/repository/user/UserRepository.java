@@ -1,4 +1,6 @@
-package com.example.carrot.domain.user;
+package com.example.carrot.repository.user;
+
+import com.example.carrot.domain.user.User;
 
 import java.util.List;
 import java.util.Optional;

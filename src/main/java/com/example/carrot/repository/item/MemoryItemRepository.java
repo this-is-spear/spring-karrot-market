@@ -1,6 +1,6 @@
-package com.example.carrot.domain.item;
+package com.example.carrot.repository.item;
 
-import org.springframework.stereotype.Repository;
+import com.example.carrot.domain.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;

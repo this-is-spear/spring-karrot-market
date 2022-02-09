@@ -2,8 +2,7 @@ package com.example.carrot.web.item;
 
 import com.example.carrot.domain.images.ItemImage;
 import com.example.carrot.domain.item.Item;
-import com.example.carrot.domain.item.ItemRepository;
-import com.example.carrot.domain.item.MemoryItemRepository;
+import com.example.carrot.repository.item.ItemRepository;
 import com.example.carrot.web.filter.CheckThreadLog;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

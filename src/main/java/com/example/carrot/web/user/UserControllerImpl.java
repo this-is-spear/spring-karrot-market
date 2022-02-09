@@ -1,9 +1,8 @@
 package com.example.carrot.web.user;
 
 import com.example.carrot.domain.user.User;
-import com.example.carrot.domain.user.UserRepository;
+import com.example.carrot.repository.user.UserRepository;
 import com.example.carrot.web.filter.CheckThreadLog;
-import com.example.carrot.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;

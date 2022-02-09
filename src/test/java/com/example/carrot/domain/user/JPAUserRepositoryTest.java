@@ -1,6 +1,7 @@
 package com.example.carrot.domain.user;
 
 import com.example.carrot.domain.images.UserImage;
+import com.example.carrot.repository.user.JPAUserRepository;
 import com.example.carrot.web.WebConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class JPAUserRepositoryTest {

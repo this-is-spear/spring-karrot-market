@@ -1,6 +1,6 @@
 package com.example.carrot.web.login;
 
-import com.example.carrot.domain.login.LoginService;
+import com.example.carrot.service.login.LoginService;
 import com.example.carrot.domain.user.User;
 import com.example.carrot.web.filter.CheckThreadLog;
 import com.example.carrot.web.session.SessionConst;

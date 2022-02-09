@@ -1,16 +1,12 @@
-package com.example.carrot.domain.item;
+package com.example.carrot.repository.item;
 
-import com.example.carrot.domain.item.ItemRepository;
-import com.example.carrot.web.filter.CheckThreadLog;
+import com.example.carrot.domain.item.Item;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Optional;
 
 @Slf4j
 @Repository
