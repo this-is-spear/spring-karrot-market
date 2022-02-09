@@ -2,6 +2,7 @@ package com.example.carrot.web.user;
 
 import com.example.carrot.domain.user.User;
 import com.example.carrot.repository.user.UserRepository;
+import com.example.carrot.service.user.UserService;
 import com.example.carrot.web.filter.CheckThreadLog;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserControllerImpl implements UserController{
-    private final UserRepository userRepository;
+
+    private final UserService userService;
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute("user") UserForm user) {
@@ -33,6 +35,8 @@ public class UserControllerImpl implements UserController{
         log.debug("[{}] add User", MDC.get(CheckThreadLog.LOG_ID));
 
         if (bindingResult.hasErrors()) {
+            log.debug("[{}][{}] join fail", MDC.get(CheckThreadLog.LOG_ID),"bindingResult error");
+            log.debug("bindingResult has Errors : {}, {}", "오류가 발생했습니다.", bindingResult.getFieldError());
             return "users/addUserForm";
         }
 
@@ -41,7 +45,7 @@ public class UserControllerImpl implements UserController{
         temp_user.setLoginId(user.getLoginId());
         temp_user.setName(user.getName());
         temp_user.setPassword(user.getPassword());
-        userRepository.save(temp_user);
+        userService.join(temp_user);
         return "redirect:/";
     }
 }
