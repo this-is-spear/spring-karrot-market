@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +46,13 @@ public class UserControllerImpl implements UserController{
         temp_user.setLoginId(user.getLoginId());
         temp_user.setName(user.getName());
         temp_user.setPassword(user.getPassword());
-        userService.join(temp_user);
+        try {
+            userService.join(temp_user);
+        } catch (IllegalStateException e) {
+            log.debug("[{}][{}] join fail in user service throw IllegalStateException", MDC.get(CheckThreadLog.LOG_ID), e.getMessage());
+            bindingResult.reject("user.error.already", "이미 존재하는 회원입니다.");
+            return "users/addUserForm";
+        }
         return "redirect:/";
     }
 }
