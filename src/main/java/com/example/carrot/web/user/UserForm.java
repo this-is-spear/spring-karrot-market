@@ -1,12 +1,16 @@
 package com.example.carrot.web.user;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class UserForm {
-    private Long id;
     @NotEmpty
     private String loginId; //로그인 ID
     @NotEmpty

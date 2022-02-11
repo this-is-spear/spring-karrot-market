@@ -42,10 +42,7 @@ public class UserControllerImpl implements UserController{
         }
 
         log.debug("[{}] add User Complete", MDC.get(CheckThreadLog.LOG_ID));
-        User temp_user = new User();
-        temp_user.setLoginId(user.getLoginId());
-        temp_user.setName(user.getName());
-        temp_user.setPassword(user.getPassword());
+        User temp_user = userTransform(user);
         try {
             userService.join(temp_user);
         } catch (IllegalStateException e) {
@@ -54,5 +51,9 @@ public class UserControllerImpl implements UserController{
             return "users/addUserForm";
         }
         return "redirect:/";
+    }
+
+    private User userTransform(UserForm user) {
+        return new User(user.getLoginId(), user.getName(), user.getPassword());
     }
 }

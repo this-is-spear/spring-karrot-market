@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
-@Setter
 @RequiredArgsConstructor
 @Entity
 public class User {
@@ -24,4 +23,12 @@ public class User {
         this.userImage = userImage;
         userImage.setUser(this);
     }
+
+    public User(String loginId, String name, String password) {
+        this.loginId = loginId;
+        this.name = name;
+        this.password = password;
+    }
+
+
 }

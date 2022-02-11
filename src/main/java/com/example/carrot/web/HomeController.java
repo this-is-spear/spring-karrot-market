@@ -2,14 +2,12 @@ package com.example.carrot.web;
 
 import com.example.carrot.domain.user.User;
 import com.example.carrot.web.filter.CheckThreadLog;
-import com.example.carrot.web.login.LoginForm;
 import com.example.carrot.web.session.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
